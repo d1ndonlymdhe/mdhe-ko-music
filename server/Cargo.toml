@@ -11,7 +11,7 @@ actix-easy-multipart = "3.0.0"
 actix-multipart = "0.6.0"
 actix-web = "4"
 bytes = { version = "1.4.0", features = ["serde"] }
-diesel = {version = "2.0.0" , features = ["sqlite"]}
+diesel = { version = "2.1.0", features = ["mysql"] }
 dotenvy = "0.15"
 futures-util = "0.3.28"
 mime = "0.3.17"

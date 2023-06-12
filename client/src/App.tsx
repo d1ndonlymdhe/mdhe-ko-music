@@ -10,7 +10,7 @@ import LikedSongs from './pages/LikedSongs'
 import CreatePlaylistView from './pages/CreatePlaylist'
 import Library from './pages/Library'
 import Form from './pages/form'
-export const server = "http://localhost:8000"
+export const server = import.meta.env.VITE_SERVER_ADDR
 function App() {
   return (
     <>
