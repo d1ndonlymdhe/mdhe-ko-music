@@ -2,17 +2,23 @@
 
 diesel::table! {
     liked_song (id) {
-        id -> Text,
-        song_id -> Text,
-        liked_by -> Text,
+        #[max_length = 255]
+        id -> Varchar,
+        #[max_length = 255]
+        song_id -> Varchar,
+        #[max_length = 255]
+        liked_by -> Varchar,
     }
 }
 
 diesel::table! {
     playlist (id) {
-        id -> Text,
-        title -> Text,
-        user_id -> Text,
+        #[max_length = 255]
+        id -> Varchar,
+        #[max_length = 255]
+        title -> Varchar,
+        #[max_length = 255]
+        user_id -> Varchar,
         custom_image -> Bool,
         count -> Integer,
     }
@@ -20,36 +26,50 @@ diesel::table! {
 
 diesel::table! {
     playlist_song (id) {
-        id -> Text,
-        playlist_id -> Text,
-        song_id -> Text,
+        #[max_length = 255]
+        id -> Varchar,
+        #[max_length = 255]
+        playlist_id -> Varchar,
+        #[max_length = 255]
+        song_id -> Varchar,
     }
 }
 
 diesel::table! {
     songs (id) {
-        id -> Text,
-        title -> Text,
-        artist -> Text,
+        #[max_length = 255]
+        id -> Varchar,
+        #[max_length = 255]
+        title -> Varchar,
+        #[max_length = 255]
+        artist -> Varchar,
         durationms -> Integer,
-        thumbnail -> Text,
-        video_id -> Text,
+        #[max_length = 255]
+        thumbnail -> Varchar,
+        #[max_length = 255]
+        video_id -> Varchar,
     }
 }
 
 diesel::table! {
     tokens (id) {
-        id -> Text,
-        user_id -> Text,
-        token -> Text,
+        #[max_length = 255]
+        id -> Varchar,
+        #[max_length = 255]
+        user_id -> Varchar,
+        #[max_length = 255]
+        token -> Varchar,
     }
 }
 
 diesel::table! {
     users (id) {
-        id -> Text,
-        username -> Text,
-        unique_hash -> Text,
+        #[max_length = 255]
+        id -> Varchar,
+        #[max_length = 255]
+        username -> Varchar,
+        #[max_length = 255]
+        unique_hash -> Varchar,
     }
 }
 
@@ -58,6 +78,7 @@ diesel::joinable!(liked_song -> users (liked_by));
 diesel::joinable!(playlist -> users (user_id));
 diesel::joinable!(playlist_song -> playlist (playlist_id));
 diesel::joinable!(playlist_song -> songs (song_id));
+diesel::joinable!(tokens -> users (user_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
     liked_song,

@@ -438,7 +438,7 @@ async fn play_song(payload: web::Query<PlayQuery>) -> impl Responder {
 
                     for f in fmts {
                         let q = f.audio_quality.unwrap_or("None".to_string());
-                        let c = f.audio_codec.unwrap_or("None".to_string());
+                        let c = f.mime_type.audio_codec.unwrap_or("None".to_string());
                         if q != "None" && c != "None" {
                             if q == "AUDIO_QUALITY_LOW" && c == "opus" {
                                 let u = f.url;
@@ -713,7 +713,7 @@ async fn get_info(payload: web::Json<SongInfoReq>) -> impl Responder {
                         println!("------------");
                         for f in fmts {
                             let quality = f.audio_quality.unwrap_or("None".to_string());
-                            let codec = f.audio_codec.unwrap_or("None".to_string());
+                            let codec = f.mime_type.audio_codec.unwrap_or("None".to_string());
                             if quality != "None" && codec != "None" {
                                 if quality == "AUDIO_QUALITY_LOW" && codec == "opus" {
                                     song_url = String::from(&f.url);
@@ -804,7 +804,7 @@ async fn get_info_db(payload: web::Json<SongInfoReq>) -> impl Responder {
                             println!("------------");
                             for f in fmts {
                                 let quality = f.audio_quality.unwrap_or("None".to_string());
-                                let codec = f.audio_codec.unwrap_or("None".to_string());
+                                let codec = f.mime_type.audio_codec.unwrap_or("None".to_string());
                                 if quality != "None" && codec != "None" {
                                     if quality == "AUDIO_QUALITY_LOW" && codec == "opus" {
                                         song_url = String::from(&f.url);
@@ -1336,7 +1336,7 @@ async fn main() -> std::io::Result<()> {
             .service(get_all_pls)
             .service(get_pl_songs)
     })
-    .bind(("127.0.0.1", 8000))?
+    .bind(("0.0.0.0", 8000))?
     .run()
     .await
 }

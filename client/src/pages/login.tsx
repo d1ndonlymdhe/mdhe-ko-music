@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import Cookie from "js-cookie"
 import { Link } from "react-router-dom";
-import { checkCookie } from "../App";
-const server = "http://localhost:8000"
+import { checkCookie, server } from "../App";
+
 export type serverRes = {
     success: boolean,
     msg: string
