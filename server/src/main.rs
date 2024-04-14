@@ -1336,7 +1336,7 @@ async fn main() -> std::io::Result<()> {
             .service(get_all_pls)
             .service(get_pl_songs)
     })
-    .bind(("0.0.0.0", 8000))?
+    .bind(("0.0.0.0", 8080))?
     .run()
     .await
 }
